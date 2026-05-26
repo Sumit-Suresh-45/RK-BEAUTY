@@ -131,7 +131,7 @@ const Booking = () => {
 
       <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
           <div>
             <label style={labelStyle}>Full Name</label>
             <input style={inputStyle} type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Jane Doe" />
@@ -156,7 +156,7 @@ const Booking = () => {
           </div>
         )}
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
           <div>
             <label style={labelStyle}>Preferred Date</label>
             <input style={inputStyle} type="date" name="appointment_date" value={form.appointment_date} onChange={handleChange}
