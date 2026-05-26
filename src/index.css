@@ -136,3 +136,30 @@ img {
   background-color: var(--color-primary);
   color: white;
 }
+
+/* Global Responsive Spacing & Typography */
+@media (max-width: 768px) {
+  :root {
+    --spacing-section: 3.5rem;
+  }
+  .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-section: 2.5rem;
+  }
+  .container {
+    padding: 0 1.25rem;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+}
+

@@ -147,6 +147,16 @@
   .gallery-masonry { columns: 2; }
 }
 
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    position: fixed;
+  }
+}
+
 @media (max-width: 480px) {
   .gallery-masonry { columns: 1; }
 }
+
