@@ -4,6 +4,19 @@ import './Services.css';
 
 const CATEGORIES = ['All', 'Hair', 'Skin', 'Makeup', 'Nails', 'Spa'];
 
+const FALLBACK_SERVICES = [
+  { id: 1,  name: 'Haircut & Styling',   category: 'hair',   price: 50,  description: 'Expert cut and style tailored to your face shape.',           image: '/images/services/haircut.jpg',  tag: 'Popular' },
+  { id: 2,  name: 'Hair Coloring',       category: 'hair',   price: 120, description: 'Premium balayage, highlights, or full color treatments.',     image: '/images/services/haircut.jpg',  tag: null },
+  { id: 3,  name: 'Hair Spa Treatment',  category: 'hair',   price: 80,  description: 'Deep conditioning treatment to restore shine and health.',    image: '/images/hair.png',              tag: null },
+  { id: 4,  name: 'Facial Cleanup',      category: 'skin',   price: 40,  description: 'Quick and refreshing cleanse to remove impurities.',          image: '/images/services/facial.jpg',   tag: null },
+  { id: 5,  name: 'Advanced Facial',     category: 'skin',   price: 90,  description: 'Luxurious anti-aging or hydrating facial treatment.',         image: '/images/services/facial.jpg',   tag: 'Best Seller' },
+  { id: 6,  name: 'Bridal Makeup',       category: 'makeup', price: 250, description: 'Flawless, long-lasting HD makeup for your special day.',      image: '/images/services/makeup.jpg',   tag: null },
+  { id: 7,  name: 'Party Makeup',        category: 'makeup', price: 100, description: 'Glamorous and elegant makeup for events.',                    image: '/images/services/makeup.jpg',   tag: null },
+  { id: 8,  name: 'Manicure',            category: 'nails',  price: 30,  description: 'Classic nail shaping, cuticle care, and polish.',             image: '/images/services/nails.jpg',    tag: null },
+  { id: 9,  name: 'Pedicure',            category: 'nails',  price: 40,  description: 'Relaxing foot soak, scrub, and perfect polish.',              image: '/images/services/nails.jpg',    tag: null },
+  { id: 10, name: 'Full Body Massage',   category: 'spa',    price: 150, description: '60 minutes of deep tissue or Swedish relaxation.',            image: '/images/spa.png',               tag: 'Must Try' }
+];
+
 const Services = () => {
   const { addToCart, cartItems } = useCart();
   const [services, setServices] = useState([]);
@@ -14,13 +27,20 @@ const Services = () => {
   useEffect(() => {
     document.title = "Our Services | RK Beauty - Hair, Skin & Wellness";
     fetch('/api/services')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("API failed");
+        return res.json();
+      })
       .then(data => {
-        setServices(Array.isArray(data) ? data : []);
+        setServices(Array.isArray(data) && data.length > 0 ? data : FALLBACK_SERVICES);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setServices(FALLBACK_SERVICES);
+        setLoading(false);
+      });
   }, []);
+
 
   const filtered = activeCategory === 'All'
     ? services

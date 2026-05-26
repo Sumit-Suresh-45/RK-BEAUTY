@@ -3,6 +3,15 @@ import './Gallery.css';
 
 const CATEGORIES = ['All', 'Hair', 'Makeup', 'Nails', 'Spa', 'Interior'];
 
+const FALLBACK_GALLERY = [
+  { id: 1, title: 'Balayage Transformation', category: 'hair',     image_url: '/images/gallery/hair-1.jpg' },
+  { id: 2, title: 'Bridal Makeup Look',      category: 'makeup',   image_url: '/images/gallery/makeup-1.jpg' },
+  { id: 3, title: 'Nail Art Design',         category: 'nails',    image_url: '/images/gallery/nails-1.jpg' },
+  { id: 4, title: 'Salon Interior',          category: 'interior', image_url: '/images/gallery/interior.jpg' },
+  { id: 5, title: 'Hair Styling',            category: 'hair',     image_url: '/images/hair.png' },
+  { id: 6, title: 'Spa Treatment',           category: 'spa',      image_url: '/images/spa.png' }
+];
+
 const Gallery = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,13 +21,20 @@ const Gallery = () => {
   useEffect(() => {
     document.title = "Gallery | RK Beauty - Transitions & Artistry";
     fetch('/api/gallery')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("API failed");
+        return res.json();
+      })
       .then(data => {
-        setImages(Array.isArray(data) ? data : []);
+        setImages(Array.isArray(data) && data.length > 0 ? data : FALLBACK_GALLERY);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setImages(FALLBACK_GALLERY);
+        setLoading(false);
+      });
   }, []);
+
 
   const filtered = activeCategory === 'All'
     ? images

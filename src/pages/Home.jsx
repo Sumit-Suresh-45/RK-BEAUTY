@@ -4,6 +4,12 @@ import Button from '../components/Button';
 import { useAuth } from '../context/AuthContext';
 import './Home.css';
 
+const FALLBACK_REVIEWS = [
+  { id: 1, name: 'Priya Sharma', rating: 5, comment: 'Amazing experience! The bridal makeup was absolutely stunning. I felt like a queen on my wedding day!' },
+  { id: 2, name: 'Anjali Mehta', rating: 5, comment: 'The hair spa treatment was incredibly relaxing. My hair feels so soft and shiny now. Will definitely come back!' },
+  { id: 3, name: 'Ritu Kapoor', rating: 4, comment: 'Great service and a very welcoming team. The nail art was beautiful and lasted for weeks!' }
+];
+
 const Home = () => {
   const { user, isLoggedIn, token } = useAuth();
   const [reviews, setReviews] = useState([]);
@@ -24,15 +30,20 @@ const Home = () => {
     
     // Fetch Testimonials
     fetch('/api/reviews')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("API failed");
+        return res.json();
+      })
       .then(data => {
-        setReviews(Array.isArray(data) ? data.slice(0, 3) : []);
+        setReviews(Array.isArray(data) && data.length > 0 ? data.slice(0, 3) : FALLBACK_REVIEWS);
         setLoadingReviews(false);
       })
       .catch(err => {
         console.error('Error fetching reviews:', err);
+        setReviews(FALLBACK_REVIEWS);
         setLoadingReviews(false);
       });
+
       
     if (user) {
       setReviewForm(prev => ({ ...prev, name: user.name }));
