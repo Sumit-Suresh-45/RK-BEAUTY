@@ -1,0 +1,200 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: var(--transition);
+  z-index: 1000;
+  padding: 1.5rem 0;
+}
+
+.header-scrolled {
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.logo-rk {
+  color: var(--color-primary);
+  font-size: 2.2rem;
+}
+
+.logo-beauty {
+  color: var(--color-text);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.desktop-nav a {
+  font-family: var(--font-body);
+  font-weight: 500;
+  position: relative;
+}
+
+.desktop-nav a.active {
+  color: var(--color-primary);
+}
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: var(--transition);
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a.active::after {
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-greeting {
+  color: var(--color-text-light);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--color-primary);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-body);
+}
+
+.btn-logout:hover {
+  background: var(--color-primary);
+  color: #1a0a0a;
+}
+
+.auth-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-login-nav {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.btn-login-nav:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--color-primary);
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  color: var(--color-text);
+  font-size: 1.2rem;
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow-md);
+  gap: 1rem;
+}
+
+.mobile-nav a {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-background);
+}
+
+.mobile-user {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}
+
+.btn-logout-mobile {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-body);
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .btn-book {
+    display: none;
+  }
+  .user-menu {
+    display: none;
+  }
+  .auth-nav-btns {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .mobile-nav {
+    display: flex;
+  }
+  .header {
+    background-color: var(--color-surface);
+    padding: 1rem 0;
+  }
+}

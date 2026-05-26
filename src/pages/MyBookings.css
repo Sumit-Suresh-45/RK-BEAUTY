@@ -1,0 +1,131 @@
+.bookings-page {
+  padding-top: 6rem;
+  min-height: 70vh;
+}
+
+.bookings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.empty-bookings {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 1px dashed var(--color-text-light);
+}
+
+.empty-bookings p {
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.browse-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.booking-card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-background);
+}
+
+.booking-card-header h3 {
+  margin: 0;
+  color: var(--color-primary-light);
+}
+
+.status-badge {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: 1px solid #4caf50;
+}
+
+.booking-details {
+  flex: 1;
+}
+
+.booking-details p {
+  margin: 0.5rem 0;
+  color: var(--color-text);
+}
+
+.booking-details strong {
+  color: var(--color-text-light);
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.booking-services {
+  margin-top: 1rem;
+  background-color: var(--color-background);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.booking-services ul {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.5rem;
+  color: var(--color-primary);
+}
+
+.booking-notes {
+  margin-top: 1rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.booking-actions {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-background);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #ff4d4f;
+  border: 1px solid #ff4d4f;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #ff4d4f;
+  color: white;
+}

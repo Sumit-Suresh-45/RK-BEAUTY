@@ -1,0 +1,43 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Sticky Mobile Booking Button */
+.mobile-only-sticky {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  animation: slideUp 0.5s ease-out;
+}
+
+.btn-sticky-book {
+  background: linear-gradient(135deg, var(--color-primary), #B8952A);
+  color: #1a0a0a;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .mobile-only-sticky {
+    display: block;
+  }
+}
